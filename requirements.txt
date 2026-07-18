@@ -3,3 +3,4 @@ torchvision>=0.15.0
 gradio>=4.0.0
 Pillow>=9.0.0
 ipykernel>=6.0.0
+streamlit>=1.30.0

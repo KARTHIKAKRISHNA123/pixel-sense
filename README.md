@@ -3,8 +3,8 @@ title: pixel-sense
 emoji: 🖼️
 colorFrom: indigo
 colorTo: pink
-sdk: gradio
-sdk_version: 4.44.0
+sdk: streamlit
+sdk_version: 1.30.0
 app_file: app.py
 pinned: false
 license: mit
