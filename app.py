@@ -2,9 +2,11 @@
 
 import torch
 import torch.nn.functional as F
-import torchvision.transforms as transforms
 from PIL import Image
 import streamlit as st
+import numpy as np
+
+
 
 from model import CNN, CIFAR10_CLASSES
 
@@ -19,11 +21,13 @@ def load_model():
     return model
 
 
-transform = transforms.Compose([
-    transforms.Resize((32, 32)),
-    transforms.ToTensor(),
-    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-])
+
+def preprocess(image: Image.Image) -> torch.Tensor:
+    image = image.resize((32, 32))
+    arr = np.array(image).astype(np.float32) / 255.0        # HWC, [0,1]
+    arr = (arr - 0.5) / 0.5                                   # normalize to [-1,1]
+    tensor = torch.from_numpy(arr).permute(2, 0, 1)           # HWC -> CHW
+    return tensor.unsqueeze(0)                                 # add batch dim
 
 st.title(" pixel-sense")
 st.write("A CNN trained from scratch on CIFAR-10 — upload an image and get a live prediction.")
