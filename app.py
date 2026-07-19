@@ -29,7 +29,7 @@ def preprocess(image: Image.Image) -> torch.Tensor:
     tensor = torch.from_numpy(arr).permute(2, 0, 1)           # HWC -> CHW
     return tensor.unsqueeze(0)                                 # add batch dim
 
-st.title(" pixel-sense")
+st.title("Pixel Sense")
 st.write("A CNN trained from scratch on CIFAR-10 — upload an image and get a live prediction.")
 
 uploaded_file = st.file_uploader("Choose an image", type=["png", "jpg", "jpeg"])
@@ -39,8 +39,7 @@ if uploaded_file is not None:
     st.image(image, caption="Uploaded image", use_container_width=True)
 
     model = load_model()
-    input_tensor = transform(image).unsqueeze(0)
-
+    input_tensor = preprocess(image)
     with torch.no_grad():
         output = model(input_tensor)
         probs = F.softmax(output, dim=1)[0]
