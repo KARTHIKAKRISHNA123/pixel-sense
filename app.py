@@ -25,7 +25,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
 ])
 
-st.title("🖼️ pixel-sense")
+st.title(" pixel-sense")
 st.write("A CNN trained from scratch on CIFAR-10 — upload an image and get a live prediction.")
 
 uploaded_file = st.file_uploader("Choose an image", type=["png", "jpg", "jpeg"])
