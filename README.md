@@ -1,10 +1,3 @@
----
-title: pixel-sense
-emoji: 🖼️
-colorFrom: indigo
-colorTo: pink
-license: mit
----
 
 # pixel-sense
 
